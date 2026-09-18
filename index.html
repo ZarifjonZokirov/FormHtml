@@ -1026,6 +1026,7 @@
       document.getElementById('summaryJob').innerText = formData.jobPosition;
       document.getElementById('summaryBranch').innerText = formData.branch;
       document.getElementById('summaryPhone').innerText = formData.phone1;
+      resetFormAfterSubmit();
 
       // Confetti celebration
       try {
@@ -1045,6 +1046,28 @@
 
       // Show Success Modal
       document.getElementById('successModal').classList.remove('hidden');
+    }
+
+    function resetFormAfterSubmit() {
+      const form = document.getElementById('vacancyForm');
+      form.reset();
+      selectedJob = '';
+      selectedBranch = '';
+      selectedEdu = '';
+      selectedExp = '';
+
+      document.getElementById('jobSearchInput').value = '';
+      document.getElementById('experienceSection').classList.add('hidden');
+      document.getElementById('pastExpInput').removeAttribute('required');
+      document.querySelectorAll('.option-card.active').forEach(card => card.classList.remove('active'));
+
+      renderEduOptions();
+      renderRegions();
+      renderBranches();
+      renderJobs();
+      renderExpOptions();
+      updateProgress();
+      setTimeout(() => lucide.createIcons(), 10);
     }
 
     function closeModalAndExit() {
